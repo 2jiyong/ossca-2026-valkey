@@ -4979,6 +4979,14 @@ void echoCommand(client *c) {
     addReplyBulk(c, c->argv[1]);
 }
 
+void echojiyongCommand(client *c) {
+    sds reply = sdsempty();
+    
+    reply = sdscatfmt(reply, "echo2_%S", (sds)objectGetVal(c->argv[1]));
+
+    addReplyBulkSds(c, reply);
+}
+
 void timeCommand(client *c) {
     addReplyArrayLen(c, 2);
     addReplyBulkLongLong(c, server.unixtime);
